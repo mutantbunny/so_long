@@ -6,13 +6,13 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:23 by gmachado          #+#    #+#             */
-/*   Updated: 2022/06/22 05:22:27 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/06/22 21:07:06 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-char	*resize_buffer(char *buf, size_t cur_size, size_t increment)
+char	*resize_buffer(char *buf, int cur_size, int increment)
 {
 	char	*new_buf;
 	int		index;
@@ -32,7 +32,6 @@ char	**get_map_file_contents(int fd)
 {
 	ssize_t	num_read;
 	int		start;
-	int		cur_size;
 	char	*buf;
 	char	**split_buf;
 
@@ -45,8 +44,8 @@ char	**get_map_file_contents(int fd)
 			return (NULL);
 		num_read = read(fd, buf + start, BUFFER_SIZE);
 		if (num_read < 0)
-			return (NULL);
-		buf[num_read] = '\0';
+			break;
+		buf[start + num_read] = '\0';
 		if (num_read == BUFFER_SIZE)
 			buf = resize_buffer(buf, start + BUFFER_SIZE + 1, BUFFER_SIZE);
 		start += num_read;
@@ -64,7 +63,7 @@ int	load_map(t_config *conf, char *map_file)
 	if (fd < 3)
 		return (1);
 	conf->map = get_map_file_contents(fd);
-	if (!validate_map(conf))
+	if (validate_map(conf))
 		return (1);
 	close(fd);
 	return (0);

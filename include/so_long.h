@@ -10,8 +10,8 @@
 
 # define XK_Escape 0xff1b
 # define BUFFER_SIZE 255
-# define WINDOW_WIDTH 1920
-# define WINDOW_HEIGHT 1080
+# define MAX_WIDTH 1920
+# define MAX_HEIGHT 1080
 
 # define EMPTY '0'
 # define WALL '1'
@@ -30,42 +30,34 @@ typedef struct	s_image {
 	int		endian;
 }	t_image;
 
-typedef struct	s_tiles
-{
-	t_image	wall;
-	t_image	empty;
-	t_image	exit;
-}	t_tiles;
-
-typedef struct	s_frames
+typedef struct	s_sprite
 {
 	void	**imgs;
 	char	**addrs;
-	int		n_frames;
 	int		bpp;
 	int		width;
 	int		height;
 	int		l_len;
 	int		endian;
-}	t_frames;
-
-typedef struct	s_sprite
-{
-	t_frames	frames;
-	int			cur_frame;
-	int			x;
-	int			y;
+	int		n_frames;
+	int		cur_frame;
+	int		x;
+	int		y;
 }	t_sprite;
 
 typedef struct	s_config
 {
 	void		*mlx;
 	void		*mlx_win;
-	t_sprite	character;
-	t_tiles		tiles;
-	t_image		scr_img;
+	t_sprite	hero;
+	t_sprite	coin;
+	t_image		wall;
+	t_image		empty;
+	t_image		exit;
+	t_image		scr_buf;
 	int			map_width;
 	int			map_height;
+	int			sprite_size;
 	char		**map;
 }	t_config;
 
@@ -74,10 +66,10 @@ int		key_hook(int keycode,void *param);
 
 // init.c
 void	load_tiles(t_config	*conf, char *wall, char *empty, char *exit);
-int		build_initial_screen(t_config *conf);
+int		initialize_screen(t_config *conf);
 
 // map.c
-char	*resize_buffer(char *buf, size_t cur_size, size_t increment);
+char	*resize_buffer(char *buf, int cur_size, int increment);
 char	**get_map_file_contents(int fd);
 int		load_map(t_config *conf, char *map_file);
 

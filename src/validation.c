@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:24:34 by gmachado          #+#    #+#             */
-/*   Updated: 2022/06/22 05:17:27 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/06/22 21:06:58 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,11 @@ int	validate_map(t_config *conf)
 {
 	if (conf->map == NULL || *(conf->map) == NULL)
 		return (1);
-	if (!validate_shape(conf))
+	if (validate_shape(conf))
 		return (1);
-	if (!validate_walls(conf))
+	if (validate_walls(conf))
 		return (1);
-	if (!validate_tiles(conf))
+	if (validate_tiles(conf))
 		return (1);
 	return (0);
 }
