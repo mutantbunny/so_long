@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:23 by gmachado          #+#    #+#             */
-/*   Updated: 2022/06/22 21:07:06 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/19 02:46:16 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	**get_map_file_contents(int fd)
 			return (NULL);
 		num_read = read(fd, buf + start, BUFFER_SIZE);
 		if (num_read < 0)
-			break;
+			break ;
 		buf[start + num_read] = '\0';
 		if (num_read == BUFFER_SIZE)
 			buf = resize_buffer(buf, start + BUFFER_SIZE + 1, BUFFER_SIZE);
@@ -59,6 +59,8 @@ int	load_map(t_config *conf, char *map_file)
 {
 	int	fd;
 
+	if (ft_strncmp(map_file + ft_strlen(map_file) - 4, ".ber", 4))
+		return (1);
 	fd = open(map_file, O_RDONLY);
 	if (fd < 3)
 		return (1);

@@ -6,35 +6,54 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:46 by gmachado          #+#    #+#             */
-/*   Updated: 2022/06/23 03:04:47 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/19 02:27:48 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-int	copy_image(t_image *dest, t_image *src, int x, int y)
+void	render_tile(t_config *conf, int scr_x, int scr_y, t_image *tile)
 {
-	return (1);
+	int		x;
+	int		y;
+	char	*start;
+	int		bpp;
+
+	y = 0;
+	bpp = conf->scr.bpp / 8;
+	start = conf->scr.addr + scr_y * conf->tile_size * conf->scr.l_len
+		+ scr_x * conf->tile_size * bpp;
+
+	while (y < conf->tile_size)
+	{
+		x = 0;
+		while (x < conf->tile_size)
+		{
+			*(unsigned int *)(start + x * bpp)
+				= *(unsigned int *)(tile->addr + y * tile->l_len + x * bpp);
+			x++;
+		}
+		start += (conf->scr.l_len);
+		y++;
+	}
 }
 
-int	merge_images(t_config *conf, t_sprite *fgnd, int x, int y)
+void	draw_hero_up(t_config *conf, int x, int y)
 {
-	return (1);
+	render_tile(conf, x, y, &(conf->hero.up));
 }
 
-int	render_tile(t_config *conf, int x, int y)
+void	draw_hero_down(t_config *conf, int x, int y)
 {
-	const char	tile_type = conf->map[y][x];
+	render_tile(conf, x, y, &(conf->hero.down));
+}
 
-	if (tile_type == EMPTY)
-		return (copy_image(&(conf->scr_buf), &(conf->empty), x, y));
-	if (tile_type == WALL)
-		return (copy_image(&(conf->scr_buf), &(conf->wall), x, y));
-	if (tile_type == COIN)
-		return (merge_images(conf, &(conf->coin), x, y));
-	if (tile_type == START)
-		return (merge_images(conf, &(conf->hero), x, y));
-	if (tile_type == EXIT)
-		return (copy_image(&(conf->scr_buf), &(conf->exit), x, y));
-	return (1);
+void	draw_hero_left(t_config *conf, int x, int y)
+{
+	render_tile(conf, x, y, &(conf->hero.left));
+}
+
+void	draw_hero_right(t_config *conf, int x, int y)
+{
+	render_tile(conf, x, y, &(conf->hero.right));
 }
