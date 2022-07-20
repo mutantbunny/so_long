@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:08 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/20 12:53:04 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/20 20:33:59 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,6 @@ int	load_tiles(t_config *conf)
 	return (0);
 }
 
-t_image	*get_tile(t_config *conf, char ch)
-{
-	if (ch == WALL)
-		return (&(conf->wall));
-	if (ch == EMPTY)
-		return (&(conf->empty));
-	if (ch == COIN)
-		return (&(conf->coin));
-	if (ch == START)
-		return (&(conf->hero.right));
-	if (ch == EXIT)
-		return (&(conf->exit));
-	return (NULL);
-}
-
 void	initialize_tiles(t_config *conf)
 {
 	int		x;
@@ -100,7 +85,8 @@ void	initialize_tiles(t_config *conf)
 				conf->hero.y = y;
 				conf->map[y][x] = EMPTY;
 			}
-			render_tile(conf, x, y, get_tile(conf, ch));
+			render_tile(conf, x, y, get_bg_tile(conf, ch));
+			render_tile(conf, x, y, get_fg_tile(conf, ch));
 			x++;
 		}
 		y++;

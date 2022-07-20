@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 02:09:56 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/20 12:45:31 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/20 20:37:00 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ int		key_hook(int keycode, void *param);
 int		loop_hook(void *param);
 
 // init.c
-t_image	*get_tile(t_config *conf, char ch);
 int		load_hero_tiles(t_config *conf);
 int		load_tiles(t_config	*conf);
 int		initialize_game(t_config *conf);
@@ -116,6 +115,8 @@ void	move_right(void *conf);
 void	update_status(t_config *conf, int x, int y, int direction);
 
 // render.c
+t_image	*get_bg_tile(t_config *conf, char ch);
+t_image	*get_fg_tile(t_config *conf, char ch);
 void	render_tile(t_config *conf, int scr_x, int scr_y, t_image *tile);
 
 // so_long.c
