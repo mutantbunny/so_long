@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:39 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/19 02:08:49 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/20 02:12:47 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,11 @@ int	loop_hook(void *param)
 
 	mlx_put_image_to_window(conf->mlx, conf->mlx_win, conf->scr.img, 0, 0);
 	return (0);
+}
+
+void	add_hooks(t_config *conf)
+{
+	mlx_key_hook(conf->mlx_win, key_hook, conf);
+	mlx_loop_hook(conf->mlx, loop_hook, conf);
+	mlx_hook(conf->mlx_win, BTN_X, NO_EVENT, exit_program, conf);
 }

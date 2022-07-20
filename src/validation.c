@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:24:34 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/19 23:32:00 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/20 02:11:01 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	validate_shape(t_config *conf)
 
 int	validate_tile(t_config *conf, int x, int y, int start_count)
 {
-	char tile;
+	char	tile;
 
 	tile = conf->map[y][x];
 	if (tile == START && start_count)
@@ -85,7 +85,7 @@ int	validate_tiles(t_config *conf)
 			exit_count += (conf->map[y][x] == EXIT);
 		}
 	}
-	if ((start_count ==0 || coin_count == 0 || exit_count == 0))
+	if ((start_count == 0 || coin_count == 0 || exit_count == 0))
 		return (1);
 	return (0);
 }

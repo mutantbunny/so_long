@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:23 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/20 00:29:28 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/20 00:41:50 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,25 @@ char	*resize_buffer(char *buf, int cur_size, int increment)
 char	**get_map_file_contents(int fd)
 {
 	ssize_t	num_read;
-	int		start;
+	char	read_str[BUFFER_SIZE + 1];
 	char	*buf;
+	char	*temp;
 	char	**split_buf;
 
 	num_read = 1;
-	start = 0;
-	buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buf = (char *)malloc(sizeof(char));
+	buf[0] = '\0';
 	while (num_read)
 	{
 		if (buf == NULL)
 			return (NULL);
-		num_read = read(fd, buf + start, BUFFER_SIZE);
-		if (num_read < 0)
+		num_read = read(fd, read_str, BUFFER_SIZE);
+		if (num_read <= 0)
 			break ;
-		buf[start + num_read] = '\0';
-		if (num_read == BUFFER_SIZE)
-			buf = resize_buffer(buf, start + BUFFER_SIZE + 1, BUFFER_SIZE);
-		start += num_read;
+		read_str[num_read] = '\0';
+		temp = buf;
+		buf = ft_strjoin(buf, read_str);
+		free(temp);
 	}
 	split_buf = ft_split(buf, '\n');
 	free(buf);

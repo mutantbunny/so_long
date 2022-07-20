@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 02:09:56 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/19 23:31:11 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/20 02:24:53 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@
 # define START 'P'
 # define WALL '1'
 
-# define MAP_FILE "/home/coelho/projects/so_long/asset/map1.ber"
-# define COIN_XPM "/home/coelho/projects/so_long/asset/capy/carrot.xpm"
+# define COIN_XPM "/home/coelho/projects/so_long/asset/capy/carot.xpm"
 # define EMPTY_XPM "/home/coelho/projects/so_long/asset/capy/grass.xpm"
 # define EXIT_XPM "/home/coelho/projects/so_long/asset/capy/water.xpm"
 # define WALL_XPM "/home/coelho/projects/so_long/asset/capy/trees.xpm"
@@ -88,6 +87,7 @@ typedef struct s_config
 }	t_config;
 
 // hooks.c
+void	add_hooks(t_config *conf);
 int		key_hook(int keycode, void *param);
 int		loop_hook(void *param);
 
