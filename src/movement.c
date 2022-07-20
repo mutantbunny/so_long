@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 02:09:22 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/19 02:39:22 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/19 23:38:30 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ void	move_up(void *param)
 
 	conf = (t_config *)param;
 	tile = conf->map[y - 1][x];
-	if (tile != WALL && (tile != EXIT || conf->num_coins == 0))
+	if (tile != WALL)
 	{
-		render_tile(conf, x, y, get_tile(conf, EMPTY));
+		render_tile(conf, x, y, get_tile(conf, conf->map[y][x]));
 		conf->hero.y--;
 		conf->num_moves++;
 	}
 	draw_hero_up(conf, x, conf->hero.y);
-	update_status(conf, x, y, tile);
+	update_status(conf, x, y - 1, tile);
 }
 
 void	move_down(void *param)
@@ -58,14 +58,14 @@ void	move_down(void *param)
 
 	conf = (t_config *)param;
 	tile = conf->map[y + 1][x];
-	if (tile != WALL && (tile != EXIT || conf->num_coins == 0))
+	if (tile != WALL)
 	{
-		render_tile(conf, x, y, get_tile(conf, EMPTY));
+		render_tile(conf, x, y, get_tile(conf, conf->map[y][x]));
 		conf->hero.y++;
 		conf->num_moves++;
 	}
 	draw_hero_down(conf, x, conf->hero.y);
-	update_status(conf, x, y, tile);
+	update_status(conf, x, y + 1, tile);
 }
 
 void	move_left(void *param)
@@ -77,14 +77,14 @@ void	move_left(void *param)
 
 	conf = (t_config *)param;
 	tile = conf->map[y][x - 1];
-	if (tile != WALL && (tile != EXIT || conf->num_coins == 0))
+	if (tile != WALL)
 	{
-		render_tile(conf, x, y, get_tile(conf, EMPTY));
+		render_tile(conf, x, y, get_tile(conf, conf->map[y][x]));
 		conf->hero.x--;
 		conf->num_moves++;
 	}
 	draw_hero_left(conf, conf->hero.x, y);
-	update_status(conf, x, y, tile);
+	update_status(conf, x - 1, y, tile);
 }
 
 void	move_right(void *param)
@@ -96,12 +96,12 @@ void	move_right(void *param)
 
 	conf = (t_config *)param;
 	tile = conf->map[y][x + 1];
-	if (tile != WALL && (tile != EXIT || conf->num_coins == 0))
+	if (tile != WALL)
 	{
-		render_tile(conf, x, y, get_tile(conf, EMPTY));
+		render_tile(conf, x, y, get_tile(conf, conf->map[y][x]));
 		conf->hero.x++;
 		conf->num_moves++;
 	}
 	draw_hero_right(conf, conf->hero.x, y);
-	update_status(conf, x, y, tile);
+	update_status(conf, x + 1, y, tile);
 }

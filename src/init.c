@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:08 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/19 02:41:49 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/19 23:17:47 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	initialize_tiles(t_config *conf)
 			{
 				conf->hero.x = x;
 				conf->hero.y = y;
+				conf->map[y][x] = EMPTY;
 			}
 			render_tile(conf, x, y, get_tile(conf, ch));
 			x++;

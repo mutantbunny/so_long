@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:24:34 by gmachado          #+#    #+#             */
-/*   Updated: 2022/06/22 21:06:58 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/19 23:32:00 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,18 @@ int	validate_shape(t_config *conf)
 111
 */
 
-int	is_invalid_tile(char tile)
+int	validate_tile(t_config *conf, int x, int y, int start_count)
 {
-	return (tile != EMPTY
-		&& tile != WALL
-		&& tile != COIN
-		&& tile != EXIT
-		&& tile != START);
+	char tile;
+
+	tile = conf->map[y][x];
+	if (tile == START && start_count)
+		conf->map[y][x] = EMPTY;
+	return (tile == EMPTY
+		|| tile == WALL
+		|| tile == COIN
+		|| tile == EXIT
+		|| tile == START);
 }
 
 int	validate_tiles(t_config *conf)
@@ -73,14 +78,14 @@ int	validate_tiles(t_config *conf)
 		x = 0;
 		while (++x < conf->map_width - 1)
 		{
-			if (is_invalid_tile(conf->map[y][x]))
+			if (!validate_tile(conf, x, y, start_count))
 				return (1);
 			start_count += (conf->map[y][x] == START);
 			coin_count += (conf->map[y][x] == COIN);
 			exit_count += (conf->map[y][x] == EXIT);
 		}
 	}
-	if ((start_count != 1 || coin_count == 0 || exit_count != 1))
+	if ((start_count ==0 || coin_count == 0 || exit_count == 0))
 		return (1);
 	return (0);
 }

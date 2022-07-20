@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:46 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/19 02:27:48 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/19 23:18:27 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	render_tile(t_config *conf, int scr_x, int scr_y, t_image *tile)
 	bpp = conf->scr.bpp / 8;
 	start = conf->scr.addr + scr_y * conf->tile_size * conf->scr.l_len
 		+ scr_x * conf->tile_size * bpp;
-
 	while (y < conf->tile_size)
 	{
 		x = 0;

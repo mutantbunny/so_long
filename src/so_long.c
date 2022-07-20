@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:46 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/19 02:09:42 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/19 23:18:32 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	exit_program(void *param)
 	mlx_destroy_image(conf->mlx, conf->hero.left.img);
 	mlx_destroy_image(conf->mlx, conf->hero.right.img);
 	mlx_destroy_window(conf->mlx, conf->mlx_win);
+	free(conf->map);
 	exit(0);
 }
 

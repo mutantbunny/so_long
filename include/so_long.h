@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 02:09:56 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/19 02:11:42 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/19 23:31:11 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void	draw_hero_right(t_config *conf, int x, int y);
 int		exit_program(void *param);
 
 // validation.c
-int		is_invalid_tile(char tile);
+int		validate_tile(t_config *conf, int x, int y, int start_count);
 int		validate_map(t_config *conf);
 int		validate_shape(t_config *conf);
 int		validate_tiles(t_config *conf);
