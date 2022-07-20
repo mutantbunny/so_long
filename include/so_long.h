@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 02:09:56 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/20 02:24:53 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/20 12:45:31 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,12 @@
 # define START 'P'
 # define WALL '1'
 
-# define COIN_XPM "/home/coelho/projects/so_long/asset/capy/carot.xpm"
+# define UP 0
+# define DOWN 1
+# define LEFT 2
+# define RIGHT 3
+
+# define COIN_XPM "/home/coelho/projects/so_long/asset/capy/carrot.xpm"
 # define EMPTY_XPM "/home/coelho/projects/so_long/asset/capy/grass.xpm"
 # define EXIT_XPM "/home/coelho/projects/so_long/asset/capy/water.xpm"
 # define WALL_XPM "/home/coelho/projects/so_long/asset/capy/trees.xpm"
@@ -108,14 +113,10 @@ void	move_up(void *conf);
 void	move_down(void *conf);
 void	move_left(void *conf);
 void	move_right(void *conf);
-void	update_status(t_config *conf, int x, int y, char tile);
+void	update_status(t_config *conf, int x, int y, int direction);
 
 // render.c
 void	render_tile(t_config *conf, int scr_x, int scr_y, t_image *tile);
-void	draw_hero_up(t_config *conf, int x, int y);
-void	draw_hero_down(t_config *conf, int x, int y);
-void	draw_hero_left(t_config *conf, int x, int y);
-void	draw_hero_right(t_config *conf, int x, int y);
 
 // so_long.c
 int		exit_program(void *param);

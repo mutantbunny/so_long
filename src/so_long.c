@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:46 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/20 02:24:50 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/20 10:23:33 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	cleanup(t_config *conf)
 	if (conf->mlx)
 	{
 		destroy_images(conf);
-		mlx_destroy_window(conf->mlx, conf->mlx_win);
+		if (conf->mlx_win)
+			mlx_destroy_window(conf->mlx, conf->mlx_win);
 		mlx_destroy_display(conf->mlx);
 		free(conf->mlx);
 	}
@@ -88,13 +89,9 @@ int	main(int argc, char *argv[])
 	err = load_map(&conf, argv[1]);
 	if (err)
 		exit_with_error(&conf, 2);
-	conf.mlx = mlx_init();
-	err = load_tiles(&conf);
-	if (err)
-		exit_with_error(&conf, 3);
 	err = initialize_game(&conf);
 	if (err)
-		return (err);
+		exit_with_error(&conf, 3);
 	add_hooks(&conf);
 	mlx_loop(conf.mlx);
 }

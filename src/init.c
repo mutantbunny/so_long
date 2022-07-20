@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:08 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/20 01:33:32 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/20 12:53:04 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	load_tiles(t_config *conf)
 			&(conf->exit.width), &(conf->exit.height));
 	conf->wall.img = mlx_xpm_file_to_image(conf->mlx, WALL_XPM,
 			&(conf->wall.width), &(conf->wall.height));
-	if (!conf->coin.img || !conf->empty.img || !conf->exit.img
-		|| !conf->wall.img || load_hero_tiles(conf))
+	if (load_hero_tiles(conf) || !conf->coin.img || !conf->empty.img
+		|| !conf->exit.img || !conf->wall.img)
 		return (1);
 	conf->coin.addr = mlx_get_data_addr(conf->coin.img, &(conf->coin.bpp),
 			&(conf->coin.l_len), &(conf->coin.endian));
@@ -114,13 +114,20 @@ int	initialize_game(t_config *conf)
 
 	conf->num_moves = 0;
 	conf->num_coins = 0;
+	conf->scr.img = NULL;
+	conf->mlx_win = NULL;
+	conf->mlx = mlx_init();
+	if (!conf->mlx || load_tiles(conf))
+		return (1);
 	conf->tile_size = conf->empty.height;
 	h_px = conf->map_height * conf->tile_size;
 	w_px = conf->map_width * conf->tile_size;
-	conf->mlx_win = mlx_new_window(conf->mlx, w_px, h_px, "So Long");
 	if (h_px > MAX_HEIGHT || w_px > MAX_WIDTH)
 		return (1);
 	conf->scr.img = mlx_new_image(conf->mlx, w_px, h_px);
+	conf->mlx_win = mlx_new_window(conf->mlx, w_px, h_px, "So Long");
+	if (!conf->scr.img || !conf->mlx_win)
+		return (1);
 	conf->scr.addr = mlx_get_data_addr(conf->scr.img,
 			&(conf->scr.bpp), &(conf->scr.l_len), &(conf->scr.endian));
 	initialize_tiles(conf);

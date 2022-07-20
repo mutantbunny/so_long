@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:46 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/19 23:18:27 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/20 12:45:38 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,4 @@ void	render_tile(t_config *conf, int scr_x, int scr_y, t_image *tile)
 		start += (conf->scr.l_len);
 		y++;
 	}
-}
-
-void	draw_hero_up(t_config *conf, int x, int y)
-{
-	render_tile(conf, x, y, &(conf->hero.up));
-}
-
-void	draw_hero_down(t_config *conf, int x, int y)
-{
-	render_tile(conf, x, y, &(conf->hero.down));
-}
-
-void	draw_hero_left(t_config *conf, int x, int y)
-{
-	render_tile(conf, x, y, &(conf->hero.left));
-}
-
-void	draw_hero_right(t_config *conf, int x, int y)
-{
-	render_tile(conf, x, y, &(conf->hero.right));
 }
