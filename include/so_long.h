@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 02:09:56 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/20 20:37:00 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/20 23:00:01 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 
+// X-related constants
 # define XK_LEFT 0xff51
 # define XK_UP 0xff52
 # define XK_RIGHT 0xff53
@@ -28,30 +29,45 @@
 # define BTN_X 17
 # define NO_EVENT 0L
 
+// Map file read buffer
 # define BUFFER_SIZE 255
-# define MAX_WIDTH 1920
-# define MAX_HEIGHT 1080
 
+// Valid map tile codes
 # define COIN 'C'
 # define EMPTY '0'
 # define EXIT 'E'
 # define START 'P'
 # define WALL '1'
 
+// Movement directions
 # define UP 0
 # define DOWN 1
 # define LEFT 2
 # define RIGHT 3
 
+// General XPM files
 # define COIN_XPM "/home/coelho/projects/so_long/asset/capy/carrot.xpm"
 # define EMPTY_XPM "/home/coelho/projects/so_long/asset/capy/grass.xpm"
 # define EXIT_XPM "/home/coelho/projects/so_long/asset/capy/water.xpm"
 # define WALL_XPM "/home/coelho/projects/so_long/asset/capy/trees.xpm"
 
+// hero XPM files
 # define HERO_U_XPM "/home/coelho/projects/so_long/asset/capy/capy_up.xpm"
 # define HERO_D_XPM "/home/coelho/projects/so_long/asset/capy/capy_down.xpm"
 # define HERO_L_XPM "/home/coelho/projects/so_long/asset/capy/capy_left.xpm"
 # define HERO_R_XPM "/home/coelho/projects/so_long/asset/capy/capy_right.xpm"
+
+//Error codes
+# define ERR_CHAR 1
+# define ERR_SHAPE 2
+# define ERR_EXT 3
+# define ERR_OPEN 4
+# define ERR_TILE 5
+# define ERR_NUM 6
+# define ERR_WALL 7
+# define ERR_WIN 8
+# define ERR_SIZE 9
+# define ERR_MLX 10
 
 typedef struct s_image {
 	void	*img;

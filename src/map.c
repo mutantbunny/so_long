@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:23 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/20 00:41:50 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/20 21:02:33 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,17 @@ char	**get_map_file_contents(int fd)
 int	load_map(t_config *conf, char *map_file)
 {
 	int	fd;
+	int	err;
 
 	if (ft_strncmp(map_file + ft_strlen(map_file) - 4, ".ber", 4))
-		return (1);
+		return (ERR_EXT);
 	fd = open(map_file, O_RDONLY);
 	if (fd < 3)
-		return (1);
+		return (ERR_OPEN);
 	conf->map = get_map_file_contents(fd);
-	if (validate_map(conf))
-		return (1);
+	err = validate_map(conf);
+	if (err)
+		return (err);
 	close(fd);
 	return (0);
 }

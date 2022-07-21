@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:24:34 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/20 02:11:01 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/20 21:13:42 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,14 @@ int	validate_tiles(t_config *conf)
 		while (++x < conf->map_width - 1)
 		{
 			if (!validate_tile(conf, x, y, start_count))
-				return (1);
+				return (ERR_CHAR);
 			start_count += (conf->map[y][x] == START);
 			coin_count += (conf->map[y][x] == COIN);
 			exit_count += (conf->map[y][x] == EXIT);
 		}
 	}
 	if ((start_count == 0 || coin_count == 0 || exit_count == 0))
-		return (1);
+		return (ERR_NUM);
 	return (0);
 }
 
@@ -116,13 +116,16 @@ int	validate_walls(t_config *conf)
 
 int	validate_map(t_config *conf)
 {
+	int	err;
+
 	if (conf->map == NULL || *(conf->map) == NULL)
-		return (1);
+		return (ERR_OPEN);
 	if (validate_shape(conf))
-		return (1);
+		return (ERR_SHAPE);
 	if (validate_walls(conf))
-		return (1);
-	if (validate_tiles(conf))
-		return (1);
+		return (ERR_WALL);
+	err = validate_tiles(conf);
+	if (err)
+		return (err);
 	return (0);
 }
