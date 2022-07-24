@@ -3,10 +3,8 @@ CC_FLAGS = -Wall -Wextra -Werror -O3
 RM = rm -rf
 
 LIBFT_DIR = ./lib/libft
-LIBMLX_DIR = ./lib/libmlx
 BUILD_DIR = ./build
 LIBFT_FILE = $(LIBFT_DIR)/libft.a
-LIBMLX_FILE = $(LIBMLX_DIR)/libmlx.a
 
 HEADER_DIR = ./include
 SRC_DIR = ./src
@@ -33,19 +31,16 @@ NAME_BONUS = $(BUILD_DIR)/so_long_bonus
 
 all: $(NAME)
 
-$(NAME): $(LIBMLX_FILE) $(LIBFT_FILE) $(OBJ_FILES) $(HEADER_FILES)
+$(NAME): $(LIBFT_FILE) $(OBJ_FILES) $(HEADER_FILES)
 	mkdir -p $(BUILD_DIR)
 	$(CC) $(CC_FLAGS) $(OBJ_FILES) $(INCLUDE_FLAGS) $(LIB_FLAGS) -o $@
-
-$(LIBMLX_FILE):
-	make -C $(LIBMLX_DIR)
 
 $(LIBFT_FILE):
 	make -C $(LIBFT_DIR)
 
 bonus: $(NAME_BONUS)
 
-$(NAME_BONUS): $(LIBMLX_FILE) $(LIBFT_FILE) $(OBJ_BONUS_FILES) $(HEADER_BONUS_FILES)
+$(NAME_BONUS): $(LIBFT_FILE) $(OBJ_BONUS_FILES) $(HEADER_BONUS_FILES)
 	mkdir -p $(BUILD_DIR)
 	$(CC) $(CC_FLAGS) $(OBJ_BONUS_FILES) $(INCLUDE_FLAGS) $(LIB_BONUS_FLAGS) -o $@
 
@@ -59,12 +54,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER_FILES)
 
 clean:
 	make -C $(LIBFT_DIR) clean
-	make -C $(LIBMLX_DIR) clean
 	$(RM) $(OBJ_DIR)
 
 fclean:
 	make -C $(LIBFT_DIR) fclean
-	make -C $(LIBMLX_DIR) clean
 	$(RM) $(BUILD_DIR)
 
 norm:
