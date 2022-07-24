@@ -1,5 +1,5 @@
 CC = cc
-CC_FLAGS = -Wall -Wextra -Werror -O3
+CC_FLAGS = -Wall -Wextra -Werror -g3
 RM = rm -rf
 
 LIBFT_DIR = ./lib/libft
@@ -21,12 +21,13 @@ OBJ_FILES = $(subst $(SRC_DIR), $(OBJ_DIR), $(SRC_FILES:.c=.o))
 HEADER_BONUS_DIR = ./include/bonus
 SRC_BONUS_DIR = ./src/bonus
 OBJ_BONUS_DIR = $(BUILD_DIR)/obj/bonus
-HEADER_BONUS_FILES = $(addprefix $(HEADER_BONUS_DIR)/, so_long.h)
-SRC_BONUS_FILES = $(addprefix $(SRC_BONUS_DIR)/, hooks.c init.c map.c movement.c render.c so_long.c validation.c)
+HEADER_BONUS_FILES = $(addprefix $(HEADER_BONUS_DIR)/, so_long_bonus.h)
+SRC_BONUS_FILES = $(addprefix $(SRC_BONUS_DIR)/, enemy.c frames.c hooks.c init.c load_tiles.c map.c move_hero.c render.c so_long.c text.c validation.c)
 OBJ_BONUS_FILES = $(subst $(SRC_BONUS_DIR), $(OBJ_BONUS_DIR), $(SRC_BONUS_FILES:.c=.o))
 
 
 INCLUDE_FLAGS = -I$(HEADER_DIR) -I$(LIBFT_DIR) -I$(LIBMLX_DIR) -I$(FT_PRINTF_DIR)
+INCLUDE_BONUS_FLAGS = -I$(HEADER_BONUS_DIR) -I$(LIBFT_DIR) -I$(LIBMLX_DIR) -I$(FT_PRINTF_DIR)
 LIB_FLAGS = -L$(LIBMLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -L$(FT_PRINTF_DIR) -lftprintf -L$(LIBFT_DIR) -lft
 
 NAME = $(BUILD_DIR)/so_long
@@ -55,7 +56,7 @@ $(NAME_BONUS): $(LIBMLX_FILE) $(LIBFT_FILE) $(FT_PRINTF_FILE) $(OBJ_BONUS_FILES)
 
 $(OBJ_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c $(HEADER_BONUS_FILES)
 	mkdir -p $(OBJ_BONUS_DIR)
-	$(CC) $(CC_FLAGS) $< $(INCLUDE_FLAGS) -c -o $@
+	$(CC) $(CC_FLAGS) $< $(INCLUDE_BONUS_FLAGS) -c -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER_FILES)
 	mkdir -p $(OBJ_DIR)
@@ -74,7 +75,8 @@ fclean:
 	$(RM) $(BUILD_DIR)
 
 norm:
-	norminette $(SRC_FILES) $(HEADER_FILES)
+	norminette $(SRC_FILES) $(HEADER_FILES) $(SRC_BONUS_FILES) $(HEADER_BONUS_FILES)
+
 
 re:	fclean all
 

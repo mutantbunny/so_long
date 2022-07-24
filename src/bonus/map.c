@@ -6,11 +6,11 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:23 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/20 21:02:33 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/24 02:48:42 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <so_long.h>
+#include <so_long_bonus.h>
 
 char	*resize_buffer(char *buf, int cur_size, int increment)
 {

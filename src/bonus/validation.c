@@ -6,11 +6,11 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:24:34 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/20 21:13:42 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/24 02:50:07 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <so_long.h>
+#include <so_long_bonus.h>
 
 int	validate_shape(t_config *conf)
 {
@@ -58,7 +58,8 @@ int	validate_tile(t_config *conf, int x, int y, int start_count)
 		|| tile == WALL
 		|| tile == COIN
 		|| tile == EXIT
-		|| tile == START);
+		|| tile == START
+		|| tile == ENEMY);
 }
 
 int	validate_tiles(t_config *conf)

@@ -6,11 +6,11 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:46 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/20 20:33:26 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/24 14:55:29 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <so_long.h>
+#include <so_long_bonus.h>
 
 void	render_tile(t_config *conf, int scr_x, int scr_y, t_image *tile)
 {
@@ -44,7 +44,7 @@ t_image	*get_bg_tile(t_config *conf, char ch)
 {
 	if (ch == WALL)
 		return (&(conf->wall));
-	if (ch == EMPTY || ch == COIN || ch == START)
+	if (ch == EMPTY || ch == COIN || ch == START || ch == ENEMY)
 		return (&(conf->empty));
 	if (ch == EXIT)
 		return (&(conf->exit));
@@ -56,6 +56,8 @@ t_image	*get_fg_tile(t_config *conf, char ch)
 	if (ch == COIN)
 		return (&(conf->coin));
 	if (ch == START)
-		return (&(conf->hero.right));
+		return (&(conf->hero_frms.right));
+	if (ch == ENEMY)
+		return (&(conf->enemy_frms.right));
 	return (NULL);
 }

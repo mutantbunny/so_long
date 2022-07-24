@@ -6,11 +6,11 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:46 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/20 23:10:27 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/24 15:05:43 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <so_long.h>
+#include <so_long_bonus.h>
 
 void	destroy_images(t_config *conf)
 {
@@ -24,14 +24,19 @@ void	destroy_images(t_config *conf)
 		mlx_destroy_image(conf->mlx, conf->exit.img);
 	if (conf->wall.img)
 		mlx_destroy_image(conf->mlx, conf->wall.img);
-	if (conf->hero.up.img)
-		mlx_destroy_image(conf->mlx, conf->hero.up.img);
-	if (conf->hero.down.img)
-		mlx_destroy_image(conf->mlx, conf->hero.down.img);
-	if (conf->hero.left.img)
-		mlx_destroy_image(conf->mlx, conf->hero.left.img);
-	if (conf->hero.right.img)
-		mlx_destroy_image(conf->mlx, conf->hero.right.img);
+	if (conf->hero_frms.up.img)
+		mlx_destroy_image(conf->mlx, conf->hero_frms.up.img);
+	if (conf->hero_frms.down.img)
+		mlx_destroy_image(conf->mlx, conf->hero_frms.down.img);
+	if (conf->hero_frms.left.img)
+		mlx_destroy_image(conf->mlx, conf->hero_frms.left.img);
+	if (conf->hero_frms.right.img)
+		mlx_destroy_image(conf->mlx, conf->hero_frms.right.img);
+	if (conf->moves_text.img)
+		mlx_destroy_image(conf->mlx, conf->moves_text.img);
+	if (conf->moves_digits.img)
+		mlx_destroy_image(conf->mlx, conf->moves_digits.img);
+	destroy_enemy_images(conf);
 }
 
 void	cleanup(t_config *conf)
@@ -40,6 +45,7 @@ void	cleanup(t_config *conf)
 
 	if (conf->mlx)
 	{
+		destroy_enemies(conf);
 		destroy_images(conf);
 		if (conf->mlx_win)
 			mlx_destroy_window(conf->mlx, conf->mlx_win);
@@ -66,9 +72,6 @@ int	exit_program(void *param)
 
 void	exit_with_error(t_config *conf, int code)
 {
-	if (code > ERR_MLX)
-		code = 0;
-
 	const char	*errors[] = {
 		"Unknown error", "Invalid character in map",
 		"Invalid map shape", "Invalid map filename extension",
@@ -76,9 +79,12 @@ void	exit_with_error(t_config *conf, int code)
 		"Map must contain at least 1 exit, 1 starting point and 1 collectible",
 		"Map must be surrounded by walls", "Could not initialize game window",
 		"Map is valid, but it is too big to show on this screen",
-		"Could not initialize MiniLibX"
+		"Could not initialize MiniLibX",
+		"Error initializing enemy"
 	};
 
+	if (code > ERR_ENEMY)
+		code = 0;
 	cleanup(conf);
 	ft_printf("Error\n%s.\n", errors[code]);
 	exit(code);
@@ -89,8 +95,7 @@ int	main(int argc, char *argv[])
 	t_config	conf;
 	int			err;
 
-	conf.mlx = NULL;
-	conf.map = NULL;
+	initialize_conf(&conf);
 	if (argc != 2)
 	{
 		ft_printf("Error\nInvalid arguments. Usage: %s map.ber\n", argv[0]);
@@ -102,6 +107,7 @@ int	main(int argc, char *argv[])
 	err = initialize_game(&conf);
 	if (err)
 		exit_with_error(&conf, err);
+	render_num_moves(&conf, 10, 10);
 	add_hooks(&conf);
 	mlx_loop(conf.mlx);
 }

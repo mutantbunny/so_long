@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 02:09:56 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/21 01:40:36 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/24 15:06:23 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,20 @@
 # define EMPTY_XPM "/home/coelho/projects/so_long/asset/capy/grass.xpm"
 # define EXIT_XPM "/home/coelho/projects/so_long/asset/capy/water.xpm"
 # define WALL_XPM "/home/coelho/projects/so_long/asset/capy/trees.xpm"
+# define TEXT_XPM "/home/coelho/projects/so_long/asset/capy/move_text.xpm"
+# define DIGITS_XPM "/home/coelho/projects/so_long/asset/capy/digits.xpm"
 
-// hero XPM files
+// Hero XPM files
 # define HERO_U_XPM "/home/coelho/projects/so_long/asset/capy/capy_up.xpm"
 # define HERO_D_XPM "/home/coelho/projects/so_long/asset/capy/capy_down.xpm"
 # define HERO_L_XPM "/home/coelho/projects/so_long/asset/capy/capy_left.xpm"
 # define HERO_R_XPM "/home/coelho/projects/so_long/asset/capy/capy_right.xpm"
+
+// Enemy XPM files
+# define ENEMY_U_XPM "/home/coelho/projects/so_long/asset/capy/snake_up.xpm"
+# define ENEMY_D_XPM "/home/coelho/projects/so_long/asset/capy/snake_down.xpm"
+# define ENEMY_L_XPM "/home/coelho/projects/so_long/asset/capy/snake_left.xpm"
+# define ENEMY_R_XPM "/home/coelho/projects/so_long/asset/capy/snake_right.xpm"
 
 //Error codes
 # define ERR_CHAR 1
@@ -69,8 +77,16 @@
 # define ERR_WIN 8
 # define ERR_SIZE 9
 # define ERR_MLX 10
+# define ERR_ENEMY 11
 
-typedef struct s_image {
+typedef struct s_frame
+{
+	char			*frame;
+	struct s_frame	*next;
+}	t_frame;
+
+typedef struct s_image
+{
 	void	*img;
 	char	*addr;
 	int		bpp;
@@ -80,15 +96,26 @@ typedef struct s_image {
 	int		endian;
 }	t_image;
 
-typedef struct s_sprite
+typedef struct s_frames
 {
 	t_image	up;
 	t_image	down;
 	t_image	left;
 	t_image	right;
-	int		x;
-	int		y;
+}	t_frames;
+
+typedef struct s_sprite
+{
+	t_frames	*frames;
+	int			x;
+	int			y;
 }	t_sprite;
+
+typedef struct s_enemy
+{
+	t_sprite		sprite;
+	struct s_enemy	*next;
+}	t_enemy;
 
 typedef struct s_config
 {
@@ -99,14 +126,25 @@ typedef struct s_config
 	t_image		exit;
 	t_image		coin;
 	t_image		scr;
+	t_image		moves_text;
+	t_image		moves_digits;
+	t_frames	hero_frms;
 	t_sprite	hero;
+	t_frames	enemy_frms;
+	t_enemy		*enemies;
 	int			map_width;
 	int			map_height;
 	int			tile_size;
 	int			num_coins;
 	int			num_moves;
+	int			hero_turn;
 	char		**map;
 }	t_config;
+
+// enemy.c
+void	destroy_enemies(t_config *conf);
+void	destroy_enemy_images(t_config *conf);
+int		initialize_enemy(t_config *conf, int x, int y);
 
 // hooks.c
 void	add_hooks(t_config *conf);
@@ -114,17 +152,23 @@ int		key_hook(int keycode, void *param);
 int		loop_hook(void *param);
 
 // init.c
+int		check_window_size(void *mlx, int win_width, int win_height);
+void	initialize_conf(t_config *conf);
+int		initialize_game(t_config *conf);
+void	initialize_start(t_config *conf, int x, int y);
+void	initialize_tiles(t_config *conf);
+
+// load_tiles.c
+int		load_enemy_tiles(t_config *conf);
 int		load_hero_tiles(t_config *conf);
 int		load_tiles(t_config	*conf);
-int		initialize_game(t_config *conf);
-void	initialize_tiles(t_config *conf);
 
 // map.c
 char	*resize_buffer(char *buf, int cur_size, int increment);
 char	**get_map_file_contents(int fd);
 int		load_map(t_config *conf, char *map_file);
 
-// movement.c
+// move_hero.c
 void	move_up(void *conf);
 void	move_down(void *conf);
 void	move_left(void *conf);
@@ -138,6 +182,13 @@ void	render_tile(t_config *conf, int scr_x, int scr_y, t_image *tile);
 
 // so_long.c
 int		exit_program(void *param);
+
+// text.c
+int		load_text_tiles(t_config *conf);
+void	render_digit(t_config *conf, int x_offset, int y_offset, int digit);
+void	render_moves_digits(t_config *conf, int x, int y, unsigned int nbr);
+void	render_moves_text(t_config *conf, int x_offset, int y_offset);
+void	render_num_moves(t_config *conf, int x, int y);
 
 // validation.c
 int		validate_tile(t_config *conf, int x, int y, int start_count);

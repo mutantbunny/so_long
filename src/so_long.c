@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:46 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/20 23:10:27 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/24 04:22:50 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ int	exit_program(void *param)
 
 void	exit_with_error(t_config *conf, int code)
 {
-	if (code > ERR_MLX)
-		code = 0;
-
 	const char	*errors[] = {
 		"Unknown error", "Invalid character in map",
 		"Invalid map shape", "Invalid map filename extension",
@@ -79,6 +76,8 @@ void	exit_with_error(t_config *conf, int code)
 		"Could not initialize MiniLibX"
 	};
 
+	if (code > ERR_MLX)
+		code = 0;
 	cleanup(conf);
 	ft_printf("Error\n%s.\n", errors[code]);
 	exit(code);

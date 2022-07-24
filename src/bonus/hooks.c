@@ -6,11 +6,11 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:39 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/20 17:30:30 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/24 03:05:09 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <so_long.h>
+#include <so_long_bonus.h>
 
 int	key_hook(int keycode, void *param)
 {
@@ -32,7 +32,6 @@ int	loop_hook(void *param)
 	const t_config	*conf = (t_config *)param;
 
 	mlx_put_image_to_window(conf->mlx, conf->mlx_win, conf->scr.img, 0, 0);
-	mlx_string_put(conf->mlx, conf->mlx_win, 10, 10, 0x00FF0000, "Moves:");
 	return (0);
 }
 
