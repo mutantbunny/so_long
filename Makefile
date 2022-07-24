@@ -26,8 +26,8 @@ OBJ_BONUS_FILES = $(subst $(SRC_BONUS_DIR), $(OBJ_BONUS_DIR), $(SRC_BONUS_FILES:
 
 INCLUDE_FLAGS = -I$(HEADER_DIR) -I$(LIBFT_DIR) -I$(LIBMLX_DIR)
 INCLUDE_BONUS_FLAGS = -I$(HEADER_BONUS_DIR) -I$(LIBFT_DIR) -I$(LIBMLX_DIR)
-LIB_FLAGS = -L$(LIBMLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -L$(LIBFT_DIR) -lft
-LIB_BONUS_FLAGS = -L$(LIBMLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -L$(LIBFT_DIR) -lft -lm
+LIB_FLAGS = -lmlx -L/usr/lib -lXext -lX11 -L$(LIBFT_DIR) -lft
+LIB_BONUS_FLAGS = -lmlx -L/usr/lib -lXext -lX11 -L$(LIBFT_DIR) -lft -lm
 
 NAME = $(BUILD_DIR)/so_long
 NAME_BONUS = $(BUILD_DIR)/so_long_bonus
