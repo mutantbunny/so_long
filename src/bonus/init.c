@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:08 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/24 15:35:46 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:44:30 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	initialize_conf(t_config *conf)
 {
 	conf->num_moves = 0;
 	conf->num_coins = 0;
-	conf->hero_turn = 1;
+	conf->state = HERO_TURN;
 	conf->map = NULL;
 	conf->mlx = NULL;
 	conf->mlx_win = NULL;
@@ -91,5 +91,6 @@ int	initialize_game(t_config *conf)
 	conf->scr.addr = mlx_get_data_addr(conf->scr.img,
 			&(conf->scr.bpp), &(conf->scr.l_len), &(conf->scr.endian));
 	initialize_tiles(conf);
+	srand((unsigned int)((unsigned long)conf->scr.addr & 0xFFFFFFFFUL));
 	return (0);
 }

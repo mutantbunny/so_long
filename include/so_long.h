@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 02:09:56 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/24 02:30:31 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/24 18:23:48 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <mlx.h>
 # include <libft.h>
-# include <ft_printf.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -124,10 +123,10 @@ char	**get_map_file_contents(int fd);
 int		load_map(t_config *conf, char *map_file);
 
 // movement.c
-void	move_up(void *conf);
-void	move_down(void *conf);
-void	move_left(void *conf);
-void	move_right(void *conf);
+void	move_hero_up(void *conf);
+void	move_hero_down(void *conf);
+void	move_hero_left(void *conf);
+void	move_hero_right(void *conf);
 void	update_status(t_config *conf, int x, int y, int direction);
 
 // render.c

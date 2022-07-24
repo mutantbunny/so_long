@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 02:09:56 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/24 15:06:23 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/24 18:23:00 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # include <mlx.h>
 # include <libft.h>
-# include <ft_printf.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <math.h>
 
 // X-related constants
 # define XK_LEFT 0xff51
@@ -39,6 +39,8 @@
 # define START 'P'
 # define WALL '1'
 # define ENEMY 'N'
+# define C_N_E 'D'
+# define X_N_E 'X'
 
 // Movement directions
 # define UP 0
@@ -78,6 +80,12 @@
 # define ERR_SIZE 9
 # define ERR_MLX 10
 # define ERR_ENEMY 11
+
+// Game state
+# define HERO_TURN 1
+# define ENEMY_TURN 2
+# define HERO_WIN 3
+# define HERO_LOSE 4
 
 typedef struct s_frame
 {
@@ -137,7 +145,7 @@ typedef struct s_config
 	int			tile_size;
 	int			num_coins;
 	int			num_moves;
-	int			hero_turn;
+	int			state;
 	char		**map;
 }	t_config;
 
@@ -145,6 +153,7 @@ typedef struct s_config
 void	destroy_enemies(t_config *conf);
 void	destroy_enemy_images(t_config *conf);
 int		initialize_enemy(t_config *conf, int x, int y);
+void	handle_enemies(t_config *conf);
 
 // hooks.c
 void	add_hooks(t_config *conf);
@@ -168,11 +177,18 @@ char	*resize_buffer(char *buf, int cur_size, int increment);
 char	**get_map_file_contents(int fd);
 int		load_map(t_config *conf, char *map_file);
 
+// move_enemies.c
+void	update_enemy(t_config *conf, int x, int y, int direction);
+void	move_enemy_up(t_config *conf, t_enemy *enemy);
+void	move_enemy_down(t_config *conf, t_enemy *enemy);
+void	move_enemy_left(t_config *conf, t_enemy *enemy);
+void	move_enemy_right(t_config *conf, t_enemy *enemy);
+
 // move_hero.c
-void	move_up(void *conf);
-void	move_down(void *conf);
-void	move_left(void *conf);
-void	move_right(void *conf);
+void	move_hero_up(void *conf);
+void	move_hero_down(void *conf);
+void	move_hero_left(void *conf);
+void	move_hero_right(void *conf);
 void	update_status(t_config *conf, int x, int y, int direction);
 
 // render.c
@@ -181,6 +197,8 @@ t_image	*get_fg_tile(t_config *conf, char ch);
 void	render_tile(t_config *conf, int scr_x, int scr_y, t_image *tile);
 
 // so_long.c
+void	cleanup(t_config *conf);
+void	destroy_images(t_config *conf);
 int		exit_program(void *param);
 
 // text.c

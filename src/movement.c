@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 02:09:22 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/23 19:47:45 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/24 15:44:07 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	update_status(t_config *conf, int x, int y, int direction)
 	}
 }
 
-void	move_up(void *param)
+void	move_hero_up(void *param)
 {
 	t_config	*conf;
 	const int	x = ((t_config *)param)->hero.x;
@@ -56,7 +56,7 @@ void	move_up(void *param)
 	update_status(conf, x, conf->hero.y, UP);
 }
 
-void	move_down(void *param)
+void	move_hero_down(void *param)
 {
 	t_config	*conf;
 	const int	x = ((t_config *)param)->hero.x;
@@ -73,7 +73,7 @@ void	move_down(void *param)
 	update_status(conf, x, conf->hero.y, DOWN);
 }
 
-void	move_left(void *param)
+void	move_hero_left(void *param)
 {
 	t_config	*conf;
 	const int	x = ((t_config *)param)->hero.x;
@@ -90,7 +90,7 @@ void	move_left(void *param)
 	update_status(conf, conf->hero.x, y, LEFT);
 }
 
-void	move_right(void *param)
+void	move_hero_right(void *param)
 {
 	t_config	*conf;
 	const int	x = ((t_config *)param)->hero.x;

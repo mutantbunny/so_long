@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 11:19:19 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/24 15:05:21 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:45:20 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,25 @@ void	destroy_enemy_images(t_config *conf)
 		mlx_destroy_image(conf->mlx, conf->enemy_frms.left.img);
 	if (conf->enemy_frms.right.img)
 		mlx_destroy_image(conf->mlx, conf->enemy_frms.right.img);
+}
+
+void	handle_enemies(t_config *conf)
+{
+	t_enemy			*enemy;
+	unsigned int	direction;
+
+	enemy = conf->enemies;
+	while (enemy)
+	{
+		direction = rand() % 4;
+		if (direction == UP)
+			move_enemy_up(conf, enemy);
+		else if (direction == DOWN)
+			move_enemy_down(conf, enemy);
+		else if (direction == LEFT)
+			move_enemy_left(conf, enemy);
+		else if (direction == RIGHT)
+			move_enemy_right(conf, enemy);
+		enemy = enemy->next;
+	}
 }

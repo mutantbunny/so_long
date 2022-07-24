@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movement.c                                         :+:      :+:    :+:   */
+/*   move_hero.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 02:09:22 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/24 11:23:44 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/24 18:08:14 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,28 @@ void	update_status(t_config *conf, int x, int y, int direction)
 	else if (direction == RIGHT)
 		render_tile(conf, x, y, &(conf->hero.frames->right));
 	mlx_put_image_to_window(conf->mlx, conf->mlx_win, conf->scr.img, 0, 0);
-	if (tile == EXIT)
+	if (tile == EXIT && conf->num_coins == 0)
 	{
-		if (conf->num_coins == 0)
-			exit_program(conf);
+		ft_printf("You exited the map after %i moves!\n", conf-> num_moves);
+		exit_program(conf);
 	}
+	if (conf->state == HERO_TURN)
+		conf->state = ENEMY_TURN;
 }
 
-void	move_up(void *param)
+void	move_hero_up(void *param)
 {
 	t_config	*conf;
 	const int	x = ((t_config *)param)->hero.x;
 	const int	y = ((t_config *)param)->hero.y;
 
 	conf = (t_config *)param;
+	if (conf->map[y - 1][x] == ENEMY || conf->map[y - 1][x] == C_N_E
+		|| conf->map[y - 1][x] == X_N_E)
+	{
+		conf->state = HERO_LOSE;
+		return ;
+	}
 	if (conf->map[y - 1][x] != WALL)
 	{
 		render_tile(conf, x, y, get_bg_tile(conf, conf->map[y][x]));
@@ -56,13 +64,19 @@ void	move_up(void *param)
 	update_status(conf, x, conf->hero.y, UP);
 }
 
-void	move_down(void *param)
+void	move_hero_down(void *param)
 {
 	t_config	*conf;
 	const int	x = ((t_config *)param)->hero.x;
 	const int	y = ((t_config *)param)->hero.y;
 
 	conf = (t_config *)param;
+	if (conf->map[y + 1][x] == ENEMY || conf->map[y + 1][x] == C_N_E
+		|| conf->map[y + 1][x] == X_N_E)
+	{
+		conf->state = HERO_LOSE;
+		return ;
+	}
 	if (conf->map[y + 1][x] != WALL)
 	{
 		render_tile(conf, x, y, get_bg_tile(conf, conf->map[y][x]));
@@ -73,13 +87,19 @@ void	move_down(void *param)
 	update_status(conf, x, conf->hero.y, DOWN);
 }
 
-void	move_left(void *param)
+void	move_hero_left(void *param)
 {
 	t_config	*conf;
 	const int	x = ((t_config *)param)->hero.x;
 	const int	y = ((t_config *)param)->hero.y;
 
 	conf = (t_config *)param;
+	if (conf->map[y][x - 1] == ENEMY || conf->map[y][x - 1] == C_N_E
+		|| conf->map[y][x - 1] == X_N_E)
+	{
+		conf->state = HERO_LOSE;
+		return ;
+	}
 	if (conf->map[y][x - 1] != WALL)
 	{
 		render_tile(conf, x, y, get_bg_tile(conf, conf->map[y][x]));
@@ -90,13 +110,19 @@ void	move_left(void *param)
 	update_status(conf, conf->hero.x, y, LEFT);
 }
 
-void	move_right(void *param)
+void	move_hero_right(void *param)
 {
 	t_config	*conf;
 	const int	x = ((t_config *)param)->hero.x;
 	const int	y = ((t_config *)param)->hero.y;
 
 	conf = (t_config *)param;
+	if (conf->map[y][x + 1] == ENEMY || conf->map[y][x + 1] == C_N_E
+		|| conf->map[y][x + 1] == X_N_E)
+	{
+		conf->state = HERO_LOSE;
+		return ;
+	}
 	if (conf->map[y][x + 1] != WALL)
 	{
 		render_tile(conf, x, y, get_bg_tile(conf, conf->map[y][x]));

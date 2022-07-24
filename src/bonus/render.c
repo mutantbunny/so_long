@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:46 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/24 14:55:29 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/24 18:08:46 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ t_image	*get_bg_tile(t_config *conf, char ch)
 {
 	if (ch == WALL)
 		return (&(conf->wall));
-	if (ch == EMPTY || ch == COIN || ch == START || ch == ENEMY)
+	if (ch == EMPTY || ch == COIN || ch == START || ch == ENEMY || ch == C_N_E)
 		return (&(conf->empty));
-	if (ch == EXIT)
+	if (ch == EXIT || ch == X_N_E)
 		return (&(conf->exit));
 	return (NULL);
 }
