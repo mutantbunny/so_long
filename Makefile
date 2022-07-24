@@ -5,7 +5,6 @@ RM = rm -rf
 LIBFT_DIR = ./lib/libft
 LIBMLX_DIR = ./lib/libmlx
 BUILD_DIR = ./build
-ASSET_DIR = ./asset
 LIBFT_FILE = $(LIBFT_DIR)/libft.a
 LIBMLX_FILE = $(LIBMLX_DIR)/libmlx.a
 
