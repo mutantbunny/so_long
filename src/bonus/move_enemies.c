@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 15:41:49 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/24 17:59:24 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/25 02:52:33 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,11 @@ void	move_enemy_up(t_config *conf, t_enemy *enemy)
 	const int	y = enemy->sprite.y;
 
 	if (x == conf->hero.x && y - 1 == conf->hero.y)
+	{
 		conf->state = HERO_LOSE;
+		render_tile(conf, x, y, get_bg_tile(conf, conf->map[y][x]));
+		enemy->sprite.y--;
+	}
 	else if (conf->map[y - 1][x] != WALL)
 	{
 		if (conf->map[y][x] == C_N_E)
@@ -68,7 +72,11 @@ void	move_enemy_down(t_config *conf, t_enemy *enemy)
 	const int	y = enemy->sprite.y;
 
 	if (x == conf->hero.x && y + 1 == conf->hero.y)
+	{
 		conf->state = HERO_LOSE;
+		render_tile(conf, x, y, get_bg_tile(conf, conf->map[y][x]));
+		enemy->sprite.y++;
+	}
 	else if (conf->map[y + 1][x] != WALL)
 	{
 		if (conf->map[y][x] == C_N_E)
@@ -90,7 +98,11 @@ void	move_enemy_left(t_config *conf, t_enemy *enemy)
 	const int	y = enemy->sprite.y;
 
 	if (x - 1 == conf->hero.x && y == conf->hero.y)
+	{
 		conf->state = HERO_LOSE;
+		render_tile(conf, x, y, get_bg_tile(conf, conf->map[y][x]));
+		enemy->sprite.x--;
+	}
 	else if (conf->map[y][x - 1] != WALL)
 	{
 		if (conf->map[y][x] == C_N_E)
@@ -112,7 +124,11 @@ void	move_enemy_right(t_config *conf, t_enemy *enemy)
 	const int	y = enemy->sprite.y;
 
 	if (x + 1 == conf->hero.x && y == conf->hero.y)
+	{
 		conf->state = HERO_LOSE;
+		render_tile(conf, x, y, get_bg_tile(conf, conf->map[y][x]));
+		enemy->sprite.x++;
+	}
 	else if (conf->map[y][x + 1] != WALL)
 	{
 		if (conf->map[y][x] == C_N_E)

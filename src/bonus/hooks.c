@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:39 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/24 18:05:01 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/25 02:32:51 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	key_hook(int keycode, void *param)
 
 int	loop_hook(void *param)
 {
-	const t_config	*conf = (t_config *)param;
+	const t_config		*conf = (t_config *)param;
 
 	mlx_put_image_to_window(conf->mlx, conf->mlx_win, conf->scr.img, 0, 0);
 	if (conf->state == HERO_LOSE)

@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 02:09:56 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/24 18:23:00 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/25 02:50:50 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,24 +49,24 @@
 # define RIGHT 3
 
 // General XPM files
-# define COIN_XPM "/home/coelho/projects/so_long/asset/capy/carrot.xpm"
-# define EMPTY_XPM "/home/coelho/projects/so_long/asset/capy/grass.xpm"
-# define EXIT_XPM "/home/coelho/projects/so_long/asset/capy/water.xpm"
-# define WALL_XPM "/home/coelho/projects/so_long/asset/capy/trees.xpm"
-# define TEXT_XPM "/home/coelho/projects/so_long/asset/capy/move_text.xpm"
-# define DIGITS_XPM "/home/coelho/projects/so_long/asset/capy/digits.xpm"
+# define COIN_XPM "../asset/capy/carrot.xpm"
+# define EMPTY_XPM "../asset/capy/grass.xpm"
+# define EXIT_XPM "../asset/capy/water.xpm"
+# define WALL_XPM "../asset/capy/trees.xpm"
+# define TEXT_XPM "../asset/capy/move_text.xpm"
+# define DIGITS_XPM "../asset/capy/digits.xpm"
 
 // Hero XPM files
-# define HERO_U_XPM "/home/coelho/projects/so_long/asset/capy/capy_up.xpm"
-# define HERO_D_XPM "/home/coelho/projects/so_long/asset/capy/capy_down.xpm"
-# define HERO_L_XPM "/home/coelho/projects/so_long/asset/capy/capy_left.xpm"
-# define HERO_R_XPM "/home/coelho/projects/so_long/asset/capy/capy_right.xpm"
+# define HERO_U_XPM "../asset/capy/capy_up.xpm"
+# define HERO_D_XPM "../asset/capy/capy_down.xpm"
+# define HERO_L_XPM "../asset/capy/capy_left.xpm"
+# define HERO_R_XPM "../asset/capy/capy_right.xpm"
 
 // Enemy XPM files
-# define ENEMY_U_XPM "/home/coelho/projects/so_long/asset/capy/snake_up.xpm"
-# define ENEMY_D_XPM "/home/coelho/projects/so_long/asset/capy/snake_down.xpm"
-# define ENEMY_L_XPM "/home/coelho/projects/so_long/asset/capy/snake_left.xpm"
-# define ENEMY_R_XPM "/home/coelho/projects/so_long/asset/capy/snake_right.xpm"
+# define ENEMY_U_XPM "../asset/capy/snake_up.xpm"
+# define ENEMY_D_XPM "../asset/capy/snake_down.xpm"
+# define ENEMY_L_XPM "../asset/capy/snake_left.xpm"
+# define ENEMY_R_XPM "../asset/capy/snake_right.xpm"
 
 //Error codes
 # define ERR_CHAR 1
@@ -200,6 +200,7 @@ void	render_tile(t_config *conf, int scr_x, int scr_y, t_image *tile);
 void	cleanup(t_config *conf);
 void	destroy_images(t_config *conf);
 int		exit_program(void *param);
+void	exit_with_error(t_config *conf, int code);
 
 // text.c
 int		load_text_tiles(t_config *conf);

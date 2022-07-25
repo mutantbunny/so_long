@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 02:09:56 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/24 18:23:48 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/25 01:10:41 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,16 @@
 # define RIGHT 3
 
 // General XPM files
-# define COIN_XPM "/home/coelho/projects/so_long/asset/capy/carrot.xpm"
-# define EMPTY_XPM "/home/coelho/projects/so_long/asset/capy/grass.xpm"
-# define EXIT_XPM "/home/coelho/projects/so_long/asset/capy/water.xpm"
-# define WALL_XPM "/home/coelho/projects/so_long/asset/capy/trees.xpm"
+# define COIN_XPM "../asset/capy/carrot.xpm"
+# define EMPTY_XPM "../asset/capy/grass.xpm"
+# define EXIT_XPM "../asset/capy/water.xpm"
+# define WALL_XPM "../asset/capy/trees.xpm"
 
 // hero XPM files
-# define HERO_U_XPM "/home/coelho/projects/so_long/asset/capy/capy_up.xpm"
-# define HERO_D_XPM "/home/coelho/projects/so_long/asset/capy/capy_down.xpm"
-# define HERO_L_XPM "/home/coelho/projects/so_long/asset/capy/capy_left.xpm"
-# define HERO_R_XPM "/home/coelho/projects/so_long/asset/capy/capy_right.xpm"
+# define HERO_U_XPM "../asset/capy/capy_up.xpm"
+# define HERO_D_XPM "../asset/capy/capy_down.xpm"
+# define HERO_L_XPM "../asset/capy/capy_left.xpm"
+# define HERO_R_XPM "../asset/capy/capy_right.xpm"
 
 //Error codes
 # define ERR_CHAR 1

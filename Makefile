@@ -1,5 +1,5 @@
 CC = cc
-CC_FLAGS = -Wall -Wextra -Werror -O3
+CC_FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 LIBFT_DIR = ./lib/libft
@@ -18,7 +18,7 @@ HEADER_BONUS_DIR = ./include/bonus
 SRC_BONUS_DIR = ./src/bonus
 OBJ_BONUS_DIR = $(BUILD_DIR)/obj/bonus
 HEADER_BONUS_FILES = $(addprefix $(HEADER_BONUS_DIR)/, so_long_bonus.h)
-SRC_BONUS_FILES = $(addprefix $(SRC_BONUS_DIR)/, enemy.c frames.c hooks.c init.c load_tiles.c map.c move_hero.c move_enemies.c render.c so_long.c text.c validation.c)
+SRC_BONUS_FILES = $(addprefix $(SRC_BONUS_DIR)/, enemy.c hooks.c init.c load_tiles.c map.c move_hero.c move_enemies.c render.c so_long.c text.c validation.c)
 OBJ_BONUS_FILES = $(subst $(SRC_BONUS_DIR), $(OBJ_BONUS_DIR), $(SRC_BONUS_FILES:.c=.o))
 
 

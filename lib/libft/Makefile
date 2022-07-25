@@ -1,7 +1,7 @@
-CC = gcc
+CC = cc
 AR = ar rcs
 REMOVE = rm -f
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror
 
 SRC_FILES = ft_atoi.c ft_isalnum.c ft_isdigit.c ft_memchr.c ft_memmove.c \
             ft_putendl_fd.c ft_strchr.c ft_strjoin.c ft_strlen.c ft_strnstr.c \
