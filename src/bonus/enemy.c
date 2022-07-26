@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 11:19:19 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/25 02:39:35 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/25 16:53:20 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@ void	handle_enemies(t_config *conf)
 	unsigned int	direction;
 
 	enemy = conf->enemies;
+	if (!enemy)
+	{
+		conf->state = HERO_TURN;
+		return ;
+	}
 	while (enemy)
 	{
 		direction = rand() % 4;

@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:08 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/24 16:44:30 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/25 15:58:53 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,20 @@ void	initialize_conf(t_config *conf)
 	conf->mlx_win = NULL;
 	conf->enemies = NULL;
 	conf->scr.img = NULL;
+	conf->coin.img = NULL;
+	conf->empty.img = NULL;
+	conf->exit.img = NULL;
+	conf->wall.img = NULL;
+	conf->hero_frms.up.img = NULL;
+	conf->hero_frms.down.img = NULL;
+	conf->hero_frms.left.img = NULL;
+	conf->hero_frms.right.img = NULL;
+	conf->enemy_frms.up.img = NULL;
+	conf->enemy_frms.down.img = NULL;
+	conf->enemy_frms.left.img = NULL;
+	conf->enemy_frms.right.img = NULL;
+	conf->moves_digits.img = NULL;
+	conf->moves_text.img = NULL;
 }
 
 int	initialize_game(t_config *conf)
