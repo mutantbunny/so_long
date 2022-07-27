@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 02:09:56 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/28 00:41:08 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/28 00:54:41 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 # define XK_ESCAPE 0xff1b
 # define BTN_X 17
 # define NO_EVENT 0L
-
 
 // Map file read buffer
 # define BUFFER_SIZE 255

@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:08 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/28 00:42:52 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/28 01:01:09 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	initialize_game(t_config *conf)
 	int		h_px;
 	int		w_px;
 
+	conf->state = HERO_TURN;
 	conf->mlx = mlx_init();
 	if (!conf->mlx)
 		return (ERR_MLX);
