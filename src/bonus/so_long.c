@@ -95,7 +95,7 @@ int	main(int argc, char *argv[])
 	t_config	conf;
 	int			err;
 
-	initialize_conf(&conf);
+	conf = (t_config){0};
 	if (argc != 2)
 	{
 		ft_printf("Error\nInvalid arguments. Usage: %s map.ber\n", argv[0]);

@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:39 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/25 02:32:51 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/28 00:40:03 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ int	key_hook(int keycode, void *param)
 {
 	if (((t_config *)param)->state == HERO_TURN)
 	{
-		if (keycode == XK_UP)
+		if (keycode == XK_UP || XK_LOWER_W || XK_UPPER_W)
 			move_hero_up(param);
-		else if (keycode == XK_DOWN)
+		else if (keycode == XK_DOWN || XK_LOWER_S || XK_UPPER_S)
 			move_hero_down(param);
-		else if (keycode == XK_LEFT)
+		else if (keycode == XK_LEFT || XK_LOWER_A || XK_UPPER_A)
 			move_hero_left(param);
-		else if (keycode == XK_RIGHT)
+		else if (keycode == XK_RIGHT || XK_LOWER_D || XK_UPPER_D)
 			move_hero_right(param);
 	}
 	if (keycode == XK_ESCAPE)

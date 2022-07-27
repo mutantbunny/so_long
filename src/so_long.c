@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:46 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/24 04:22:50 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/28 00:42:30 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,7 @@ int	main(int argc, char *argv[])
 	t_config	conf;
 	int			err;
 
-	conf.mlx = NULL;
-	conf.map = NULL;
+	conf = (t_config) {0};
 	if (argc != 2)
 	{
 		ft_printf("Error\nInvalid arguments. Usage: %s map.ber\n", argv[0]);

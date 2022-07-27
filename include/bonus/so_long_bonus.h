@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 02:09:56 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/25 02:50:50 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/28 00:41:08 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,18 @@
 # define XK_UP 0xff52
 # define XK_RIGHT 0xff53
 # define XK_DOWN 0xff54
+# define XK_LOWER_A 0x0061
+# define XK_LOWER_S 0x0073
+# define XK_LOWER_D 0x0064
+# define XK_LOWER_W 0x0077
+# define XK_UPPER_A 0x0041
+# define XK_UPPER_S 0x0053
+# define XK_UPPER_D 0x0044
+# define XK_UPPER_W 0x0057
 # define XK_ESCAPE 0xff1b
 # define BTN_X 17
 # define NO_EVENT 0L
+
 
 // Map file read buffer
 # define BUFFER_SIZE 255
@@ -162,7 +171,6 @@ int		loop_hook(void *param);
 
 // init.c
 int		check_window_size(void *mlx, int win_width, int win_height);
-void	initialize_conf(t_config *conf);
 int		initialize_game(t_config *conf);
 void	initialize_start(t_config *conf, int x, int y);
 void	initialize_tiles(t_config *conf);

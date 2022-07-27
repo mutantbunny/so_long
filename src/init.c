@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:08:08 by gmachado          #+#    #+#             */
-/*   Updated: 2022/07/20 22:57:08 by gmachado         ###   ########.fr       */
+/*   Updated: 2022/07/28 00:43:32 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,6 @@ int	initialize_game(t_config *conf)
 	int		h_px;
 	int		w_px;
 
-	conf->num_moves = 0;
-	conf->num_coins = 0;
-	conf->scr.img = NULL;
-	conf->mlx_win = NULL;
 	conf->mlx = mlx_init();
 	if (!conf->mlx)
 		return (ERR_MLX);
